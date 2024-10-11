@@ -1,0 +1,74 @@
+Номер 1
+
+import numpy as np 
+import matplotlib.pyplot as plt
+l = 1.000 # м
+t0 = [31.1, 30.9, 31.0, 31.0, 30.9, 30.9,30.9,30.8,30.8,30.9]
+mean = np.mean(t0)
+n = np.array([20, 20, 20, 20, 20, 20, 20, 20, 20, 20])
+
+t = np.array([47.8, 42.7, 39.3, 37.2, 35.1, 34.2, 33.7, 33.5, 33.7, 33.8])
+
+a = np.array([ 73.0 ,102.0 , 125.0 ,153.0 , 185.0 , 217.0 ,254.0, 272.0 ,324.0 , 359.0])
+a = a / 1e3
+T = np.array(t) / n
+N = len(t0)
+sigma_t = np.sqrt( 1 / (N - 1) * np.sum( (t0 - mean)**2 ) )
+sigma_a = 0.5e-3
+sigma_T = sigma_t / t * T
+plt.figure(figsize=(8,6), dpi=100) 
+plt.ylabel("$T$, с") 
+plt.xlabel("$a$, м")
+plt.xlim([0, 0.5])
+plt.title('Рис.1. График зависимости периода $T$ от положения призмы $a$') 
+plt.grid(True, linestyle="--") 
+plt.errorbar(a, T, xerr=sigma_a, yerr=sigma_T, fmt=".k", label="Экспериментальные точки") 
+plt.plot(a, T, "--r", linewidth=1, label="Кусочно линейная интерполяция") 
+plt.legend()
+
+
+Номер 2
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+pos = 0
+scale = 10
+
+values1 = np.random.normal(pos,10,100)
+values2 = np.random.normal(pos,10,1000)
+values3 = np.random.normal(pos,10,5000)
+values4 = np.random.normal(pos,10,10000)
+
+fig = plt.figure(figsize = (10,6))
+ax1 = fig.add_subplot(221)
+ax2 = fig.add_subplot(222)
+ax3 = fig.add_subplot(223)
+ax4 = fig.add_subplot(224)
+
+ax1.hist(values1, 100)
+ax2.hist(values2, 100)
+ax3.hist(values3, 100)
+ax4.hist(values4, 100)
+
+plt.show()
+
+Номер 3
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+plt.show()
+df = pd.read_csv('iris_data.csv')
+df
+
+set(list(df['Speasies']))
+a = []
+for i in set(df['Speasies']):
+  a.append(list(df['Speasies']))
+plt.pie(a,lables = set(df['Speasies']))
+
+
+
