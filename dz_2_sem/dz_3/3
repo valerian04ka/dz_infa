@@ -1,0 +1,26 @@
+def from_z_to_s(z):
+    
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    s = ""
+    l_prefix = 0  
+    j = 0  
+    new_symb = 0  
+
+    for i in range(len(z)):
+        if z[i] == 0 and l_prefix == 0: #  если не копируем префикс и z[i]=0 нужно добавить новый символ
+            if new_symb < len(alphabet):
+                s += alphabet[new_symb]
+                new_symb += 1
+            else:
+                s += alphabet[len(alphabet) - 1]  # если алфавит закончился, используем последний символ
+        if z[i] > l_prefix: # копироватуем новый префикс
+            l_prefix = z[i]
+            j = 0
+        if l_prefix > 0:
+            s += s[j]
+            j += 1
+            l_prefix -= 1
+    return s
+
+z_function = [0,0,0,1,2,3,0]
+print(from_z_to_s(z_function))
