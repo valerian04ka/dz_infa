@@ -1,0 +1,20 @@
+def from_prefix_to_s(p):
+  
+  alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  s = ""
+  new_symb = 0  
+
+  for i in range(len(p)):
+    if p[i] == 0:
+      if new_symb < len(alphabet):  # Добавляем новый символ из алфавита
+        s += alphabet[new_symb]
+        new_symb += 1
+      else:
+        s += alphabet[len(alphabet) - 1] # eсли алфавит закончился, берем последний символ
+    else:
+      s += s[p[i] - 1] # используем символ из предыдущей позиции
+
+  return s
+
+prefix_function =[0,0,0,1,2,3,0]
+print(from_prefix_to_s(prefix_function))
